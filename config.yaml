@@ -1,5 +1,5 @@
-baseurl: https://example.org
-title: Universal
+baseurl: .
+title: Ciência com Dados
 theme: hugo-universal-theme
 languageCode: en-us
 defaultContentLanguage: pt-br
@@ -25,37 +25,48 @@ menu:
       url: /contact/
       weight: 4
   topbar:
-    - name: GitHub
-      pre: <i class='fab fa-2x fa-github'></i>
-      url: https://github.com/cienciacomdados
-      weight: 1
-    - name: Facebook
-      pre: <i class='fab fa-2x fa-facebook'></i>
-      url: http://facebook.com
-      weight: 2
-    - name: Twitter
-      pre: <i class='fab fa-2x fa-twitter'></i>
-      url: https://twitter.com/cienciacomdados
-      weight: 3
     - name: Email
       pre: <i class='fas fa-2x fa-envelope'></i>
       url: mailto:junior@cienciacomdados.com.br
+      weight: 1
+    - name: Instagram
+      pre: <i class='fab fa-2x fa-instagram'></i>
+      url: https://www.instagram.com/cienciacomdados/
+      weight: 2
+    - name: Facebook
+      pre: <i class='fab fa-2x fa-facebook'></i>
+      url: https://www.facebook.com/Ciência-com-Dados-105816291579374
+      weight: 3
+    - name: Twitter
+      pre: <i class='fab fa-2x fa-twitter'></i>
+      url: https://twitter.com/cienciacomdados
       weight: 4
+    - name: Linkedin
+      pre: <i class='fab fa-2x fa-linkedin'></i>
+      url: https://www.linkedin.com/company/cienciacomdados
+      weight: 5
+    - name: GitHub
+      pre: <i class='fab fa-2x fa-github'></i>
+      url: https://github.com/cienciacomdados
+      weight: 6
+    - name: YouTube
+      pre: <i class='fab fa-2x fa-youtube'></i>
+      url: https://www.youtube.com/channel/UCsTFcJXAjEoqZDXaDVfRZDg
+      weight: 7
 params:
   about_us: <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
     fames ac turpis egestas.</p>
-  address: "<p class=\"text-uppercase\"><strong>Universal Ltd.</strong>\n        <br>13/25
-    New Avenue\n        <br>Newtown upon River\n        <br>45Y 73J\n        <br>England\n
-    \       <br>\n        <strong>Great Britain</strong>\n      </p>\n      "
+  address: "<p class=\"text-uppercase\"><strong>Ciência com Dados</strong>\n        <br>Curitiba-PR\n
+    \       <br>\n        <strong>Brasil</strong>\n      </p>\n      "
   author: DevCows
   carousel:
     enable: yes
   clients:
     enable: yes
     subtitle: ''
-    title: Our Clients
+    title: Parceiros
   contact_form_ajax: no
-  copyright: Copyright (c) 2015 - 2016, YourCompany; all rights reserved.
+  copyright: Copyright (c) 2021, Ciência com Dados; todos os direitos reservados.
   date_format: January 2, 2006
   default_sharing_image: img/sharing-default.png
   defaultDescription: Site template made by devcows using hugo
@@ -80,7 +91,7 @@ params:
       fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
       tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
       ultricies mi vitae est. Mauris placerat eleifend leo.
-    title: From our blog
+    title: Publicações
   see_more:
     enable: yes
     icon: far fa-file-alt
@@ -97,9 +108,8 @@ params:
       about us.
     title: Testimonials
   topbar:
-    enable: no
-    text: "<p class=\"hidden-sm hidden-xs\">Contact us on +420 777 555 333 or hello@universal.com.</p>\n
-      \     <p class=\"hidden-md hidden-lg\"><a href=\"#\" data-animate-hover=\"pulse\"><i
+    enable: yes
+    text: "<p class=\"hidden-md hidden-lg\"><a href=\"#\" data-animate-hover=\"pulse\"><i
       class=\"fas fa-phone\"></i></a>\n      <a href=\"#\" data-animate-hover=\"pulse\"><i
       class=\"fas fa-envelope\"></i></a>\n      </p>\n      "
   twitter_site: GoHugoIO
