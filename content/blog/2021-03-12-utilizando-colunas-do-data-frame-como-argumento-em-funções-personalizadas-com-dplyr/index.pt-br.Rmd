@@ -1,0 +1,365 @@
+---
+title: Utilizando colunas do data frame como argumento em funções personalizadas com
+  dplyr
+author: acsjunior
+date: '2021-03-12'
+slug: []
+banner: img/banners/dplyr_2.jpg
+categories:
+  - tutoriais
+tags:
+  - r
+  - linguagem r
+  - dplyr
+  - tidyverse
+  - data wrangling
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Um dia desses um colega me perguntou como criar uma função `summary()` personalizada, com algumas medidas a mais. Disse que havia tentado, mas tinha dúvidas de como passar o nome das variáveis do data frame como argumento da função. Gostei muito do assunto levantado, afinal de contas, defendo sempre a reutilização de código, inclusive crio funções personalizadas a todo momento com o intuito de ganhar produtividade.
+
+Entre as formas possíveis, escolhi dar um exemplo fazendo uso do pacote **dplyr**, devido a versatilidade e praticidade que ele nos provê, e abaixo demonstro passo a passo como criar a função.
+
+# Um pouco sobre o dplyr
+
+Primeiro vamos carregar os dados para o exemplo. Como quase sempre, o exemplo contará com o conjunto de dados **iris**.
+
+```{r}
+data(iris)
+```
+
+Agora uma breve visualizada nas primeiras linhas do conjunto de dados:
+
+```{r}
+head(iris)
+```
+
+Sumarizando o comprimento das pétalas:
+
+```{r}
+summary(iris$Petal.Length)
+```
+
+Observe que a função `summary()` exibe os valores mínimo e máximo, os quartis Q1, Q2 (mediana) e Q3 e a média da variável.
+
+Agora, através do **dplyr**, vamos exibir não só as medidas mencionadas anteriormente, mas também a variância, o desvio padrão e o coeficiente de variação.
+
+Carregando o pacote:
+
+```{r}
+library(dplyr)
+```
+
+Começamos calculando a mediana:
+
+```{r}
+summarise(iris, mediana = median(Petal.Length))
+```
+
+E agora acrescentamos a média:
+
+```{r}
+summarise(iris, mediana = median(Petal.Length), media = mean(Petal.Length))
+```
+
+Podemos fazer uso do operador `%>%` (pipe) para deixar a função mais legível:
+
+```{r}
+iris %>%
+  summarise(mediana = median(Petal.Length),
+            media = mean(Petal.Length))
+```
+
+Agora incluímos os quartis:
+
+```{r}
+iris %>%
+  summarise(q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75))
+```
+
+Adicionamos o máximo e o mínimo:
+
+```{r}
+iris %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length))
+```
+
+Agora a variância e o desvio padrão:
+
+```{r}
+iris %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length),
+            variancia = var(Petal.Length),
+            d_padrao = sd(Petal.Length))
+```
+
+E, por fim, o coeficiente de variação:
+
+```{r}
+iris %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length),
+            variancia = var(Petal.Length),
+            d_padrao = sd(Petal.Length),
+            cv = d_padrao / media)
+```
+
+Já que estamos aqui, que tal exibir estas medidas por espécie?
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length),
+            variancia = var(Petal.Length),
+            d_padrao = sd(Petal.Length),
+            cv = d_padrao / media)
+```
+
+Observe que antes da função `summarise()`, utilizei a função `group_by()` passando como argumento a variável *Species*.
+
+Criando a função personalizada
+
+Acima eu demonstrei como resumir a variável *Petal.Length* a partir de algumas medidas. Agora a idéia é transformar este resumo em uma função personalizada, de modo que ela possa ser reutilizada com outras variáveis e outros conjuntos de dados.
+
+Vamos pegar como base a função abaixo (deixaremos para depois o `group_by()`):
+
+```{r}
+iris %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length),
+            variancia = var(Petal.Length),
+            d_padrao = sd(Petal.Length),
+            cv = d_padrao / media)
+```
+
+Vamos colocar este trecho de código dentro da nossa função personalizada, que chamarei de `custom_summary()`:
+
+```{r}
+custom_summary <- function() {
+  out <- iris %>%
+  summarise(min = min(Petal.Length),
+            q1 = quantile(Petal.Length, 0.25),
+            mediana = median(Petal.Length),
+            media = mean(Petal.Length),
+            q3 = quantile(Petal.Length, 0.75),
+            max = max(Petal.Length),
+            variancia = var(Petal.Length),
+            d_padrao = sd(Petal.Length),
+            cv = d_padrao / media)
+  return(out)
+}
+```
+
+Observe que o bloco que criamos anteriormente está sendo atribuído a uma variável chamada out, que no final é devolvida pela função através do `return()`.
+
+Para chamar a função, basta:
+
+```{r}
+custom_summary()
+```
+
+E agora, ao invés de resumir a variável Petal.Length, vamos adequar o código para podermos trabalhar com qualquer variável:
+
+```{r}
+custom_summary <- function(variavel) {
+  out <- iris %>%
+  summarise(min = min(variavel),
+            q1 = quantile(variavel, 0.25),
+            mediana = median(variavel),
+            media = mean(variavel),
+            q3 = quantile(variavel, 0.75),
+            max = max(variavel),
+            variancia = var(variavel),
+            d_padrao = sd(variavel),
+            cv = d_padrao / media)
+  return(out)
+}
+```
+
+No entanto, para chamar a função ainda é necessário mais um ajuste:
+
+```{r}
+custom_summary <- function(variavel) {
+  out <- iris %>%
+  summarise(min = min(!!sym(variavel)),
+            q1 = quantile(!!sym(variavel), 0.25),
+            mediana = median(!!sym(variavel)),
+            media = mean(!!sym(variavel)),
+            q3 = quantile(!!sym(variavel), 0.75),
+            max = max(!!sym(variavel)),
+            variancia = var(!!sym(variavel)),
+            d_padrao = sd(!!sym(variavel)),
+            cv = d_padrao / media)
+  return(out)
+}
+```
+
+Repare que agora, ao invés de passar direto o argumento da variável em cada medida, o argumento é passado da seguinte forma: `!!sym(argumento)`.
+
+E para chamar a função:
+
+```{r}
+custom_summary(variavel = "Sepal.Width")
+```
+
+Observe que é necessário passar o nome da variável como string (entre aspas).
+
+Vamos testar com outra variável:
+
+```{r}
+custom_summary(variavel = "Sepal.Length")
+```
+
+Mas a nossa função por enquanto só funciona com o dataset **iris**. Precisamos generalizar:
+
+```{r}
+custom_summary <- function(dados, variavel) {
+  out <- dados %>%
+  summarise(min = min(!!sym(variavel)),
+            q1 = quantile(!!sym(variavel), 0.25),
+            mediana = median(!!sym(variavel)),
+            media = mean(!!sym(variavel)),
+            q3 = quantile(!!sym(variavel), 0.75),
+            max = max(!!sym(variavel)),
+            variancia = var(!!sym(variavel)),
+            d_padrao = sd(!!sym(variavel)),
+            cv = d_padrao / media)
+  return(out)
+}
+```
+
+Observe que agora para chamar a função é necessário também passar como argumento o dataset referente à variavel em questão:
+
+```{r}
+custom_summary(dados = iris, variavel = "Sepal.Length")
+```
+
+Será que funciona com outro conjunto de dados? Vamos testar com o **mtcars**:
+
+```{r}
+data(mtcars)
+head(mtcars)
+```
+
+Vamos resumir a variável *mpg*:
+
+```{r}
+custom_summary(dados = mtcars, variavel = "mpg")
+```
+
+Funcionou!
+
+E para exibir o resumo em função de uma determinada variável categórica como demonstrei anteriormente?
+
+```{r}
+custom_summary <- function(dados, variavel, categoria) {
+  out <- dados %>%
+  group_by(!!sym(categoria)) %>%
+  summarise(min = min(!!sym(variavel)),
+            q1 = quantile(!!sym(variavel), 0.25),
+            mediana = median(!!sym(variavel)),
+            media = mean(!!sym(variavel)),
+            q3 = quantile(!!sym(variavel), 0.75),
+            max = max(!!sym(variavel)),
+            variancia = var(!!sym(variavel)),
+            d_padrao = sd(!!sym(variavel)),
+            cv = d_padrao / media)
+  return(out)
+}
+```
+
+Observe que agora a função `group_by()` foi incluída e receberá a variável categórica desejada através do argumento categoria.
+
+Vamos chamar o resumo de modo que seja exibido em função da variável Species:
+
+```{r}
+custom_summary(dados = iris, variavel = "Sepal.Width", categoria = "Species")
+```
+
+E se quisermos deixar opcional o resumo por categoria?
+
+```{r}
+custom_summary <- function(dados, variavel, categoria=FALSE) {
+  out <- dados
+  
+  if(categoria != FALSE) {
+    out <- out %>%
+      group_by(!!sym(categoria))
+  }
+  
+  out <- out %>%
+  summarise(min = min(!!sym(variavel)),
+            q1 = quantile(!!sym(variavel), 0.25),
+            mediana = median(!!sym(variavel)),
+            media = mean(!!sym(variavel)),
+            q3 = quantile(!!sym(variavel), 0.75),
+            max = max(!!sym(variavel)),
+            variancia = var(!!sym(variavel)),
+            d_padrao = sd(!!sym(variavel)),
+            cv = d_padrao / media)
+  
+  return(out)
+}
+```
+
+Repare que agora o argumento categoria, por padrão, ficará definido como `FALSE` e a função irá se comportar da seguinte forma: se o argumento *categoria* for informado, o `group_by()` é executado, caso contrário, ignorado.
+
+Chamando a função sem o argumento categoria:
+
+```{r}
+custom_summary(dados = iris, variavel = "Sepal.Width")
+```
+
+E agora com o argumento categoria:
+
+```{r}
+custom_summary(dados = iris, variavel = "Sepal.Width", categoria = "Species")
+```
+
+Enfim, podemos tornar a função tão completa e complexa quanto a nossa necessidade exigir e criatividade permitir.
+
+# Considerações finais
+
+A reutilização de código, além de deixar o nosso script mais limpo tornando muitas vezes mais fácil o entendimento do que foi codificado, colabora e muito com a nossa produtividade, visto que reduzimos o tempo redigindo e dando manutenção no código e ganhamos tempo para fazer o que interessa: analisar os dados. Portanto, crie e utilize funções personalizadas sem moderação!
+
+*Os arquivos utilizados estão disponívels no [GitHub](https://github.com/juniorssz/dplyr-function-example).*
+
+# Referências e materiais úteis
+
+* [Página do dplyr](https://dplyr.tidyverse.org/)
+* [Folha de referência (cheat sheet): Data Transformation with dplyr](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)
+* [Folha de referência (cheat sheet): Data Wrangling with dplyr and tidyr](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+* [Criando funções no R](http://www.estatisticacomr.uff.br/?p=224)
+* [Traduzindo instruções SQL para R utilizando o dplyr](https://www.linkedin.com/pulse/traduzindo-instruções-sql-para-r-utilizando-o-dplyr-da-silva-júnior/?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3BneWTTBstRVaLYEhu7QU%2FCA%3D%3D)
+* [Dica de produtividade com ggplot2 através de funções personalizadas](https://www.linkedin.com/pulse/dica-de-produtividade-com-ggplot2-através-funções-da-silva-júnior/?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3BneWTTBstRVaLYEhu7QU%2FCA%3D%3D)
+* [Exploração e comunicação de dados com R e Python](http://leg.ufpr.br/~walmes/ensino/dsbd-linprog/)
+
