@@ -8,7 +8,7 @@
   translation: "Portado para o Hugo por"
 
 - id: contactGoTo
-  translation: "Vá à página de contato"
+  translation: "Página de contato"
 
 - id: contactAddrTitle
   translation: "Endereço"
@@ -29,10 +29,10 @@
   translation: "Sua Mensagem"
 
 - id: contactSend
-  translation: "Enviar Mensagem"
+  translation: "Enviar"
 
 - id: navHome
-  translation: "vá à página inicial"
+  translation: "Página inicial"
 
 - id: navToggle
   translation: "Alternar Navegação"
@@ -59,7 +59,7 @@
   translation: "Posts recentes"
 
 - id: aboutUs
-  translation: "Sobre nós"
+  translation: "Sobre"
 
 - id: newer
   translation: "Mais novos"
@@ -71,10 +71,10 @@
   translation: "em"
 
 - id: 404Error
-  translation: "Error 404: Page not found"
+  translation: "Erro 404: Página não encontrada"
 
 - id: 404Message
-  translation: "We are sorry – this page is not here anymore"
+  translation: "Desculpe, esta página não existe mais"
 
 - id: 404NavHome
-  translation: "Vá à página inicial"
+  translation: "Página inicial"

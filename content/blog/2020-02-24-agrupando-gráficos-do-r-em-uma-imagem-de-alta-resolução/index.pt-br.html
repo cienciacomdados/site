@@ -1,0 +1,175 @@
+---
+title: Agrupando gráficos do R em uma imagem de alta resolução
+author: acsjunior
+date: '2020-02-24'
+slug: []
+banner: img/banners/ggplot2_ggpubr.jpg
+categories:
+  - tutoriais
+tags:
+  - r
+  - linguagem r
+  - ggplot2
+  - ggpubr
+  - visualização de dados
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Com o Rmarkdown podemos elaborar relatórios e slides com facilidade e muita qualidade, mas há momentos que precisamos levar os visuais criados no R para um documento externo. Já tive a necessidade, por exemplo, de gerar alguns gráficos para serem incluídos no informativo interno de uma empresa que eu trabalhei e o requisito era que estes gráficos estivessem em alta resolução.</p>
+<p>Neste post, baseado na dúvida recente de um colega, vou demonstrar como agrupar alguns gráficos do <strong>ggplot2</strong> em uma imagem de alta resolução.</p>
+<div id="vamos-ao-que-interessa" class="section level1">
+<h1>Vamos ao que interessa</h1>
+<p>Primeiro precisamos carregar os pacotes necessários:</p>
+<pre class="r"><code>library(ggplot2)
+library(ggpubr)</code></pre>
+<p>O <strong>ggplot2</strong> é o pacote mais conhecido do R para criação de gráficos e o <strong>ggpubr</strong> será usado para organizar os gráficos em uma única página.</p>
+<p>Agora vamos carregar o dataset <strong>mpg</strong> para nos ajudar com os exemplos:</p>
+<pre class="r"><code>data(mpg)</code></pre>
+<p>Precisamos criar os gráficos e atribuir cada um deles a uma variável:</p>
+<pre class="r"><code>plot1 &lt;- ggplot(mpg, aes(x = cty, y = hwy, color = class)) +
+  geom_point(alpha = 0.7, size = 2) +
+  geom_smooth(method = &quot;loess&quot;, color = &quot;red&quot;) +
+  labs(x = &quot;Consumo na cidade&quot;, y = &quot;Consumo na estrada&quot;, color = &quot;Categoria&quot;) +
+  theme(axis.title = element_text(size = 10, face = &quot;bold&quot;),
+        axis.text = element_text(size = 8),
+        legend.title = element_text(size = 10, face = &quot;bold&quot;),
+        legend.text = element_text(size = 8))
+
+plot1</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>plot2 &lt;- ggplot(mpg, aes(x = cty, fill = class)) +
+  geom_histogram(bins = 15, alpha = 0.7, color = &quot;dark gray&quot;) +
+  labs(x = &quot;Consumo na cidade&quot;, y = &quot;Frequência&quot;, fill = &quot;Categoria&quot;) +
+  theme(axis.title = element_text(size = 10, face = &quot;bold&quot;),
+        axis.text = element_text(size = 8),
+        legend.title = element_text(size = 10, face = &quot;bold&quot;),
+        legend.text = element_text(size = 8))
+
+plot2</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>plot3 &lt;- ggplot(mpg, aes(x = manufacturer, fill = class)) +
+  geom_bar(alpha = 0.7, color = &quot;dark gray&quot;) +
+  labs(x = &quot;Fabricante&quot;, y = &quot;Frequência&quot;, fill = &quot;Categoria&quot;) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.text = element_text(size = 8),
+        axis.title = element_text(size = 10, face = &quot;bold&quot;),
+        legend.title = element_text(size = 10, face = &quot;bold&quot;),
+        legend.text = element_text(size = 8))
+
+plot3</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Agora vamos chamar a função <code>ggarrange()</code> do pacote <strong>ggpubr</strong> para organizar os três gráficos em uma página:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3); graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Observe que, por padrão, a função acomodou os gráficos em um grid de duas colunas e duas linhas. Mas podemos alterar esta definição através dos argumentos <strong>ncol</strong> e <strong>nrow</strong>:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3,
+                                 ncol = 1, nrow = 3)
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Incluindo o argumento <em>common.legend</em> podemos deixar somente uma legenda comum entre os três gráficos:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3, 
+                                 ncol = 1, nrow = 3,
+                                 common.legend = TRUE, legend = &quot;right&quot;)
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Agora vamos remover o texto do eixo <em>x</em> do terceiro gráfico, utilizando a função <code>rremove()</code>:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3 + rremove(&quot;x.text&quot;), 
+                                 ncol = 1, nrow = 3,
+                                 common.legend = TRUE, legend = &quot;right&quot;)
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Com o argumento <em>labels</em> podemos incuir um rótulo para cada gráfico:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3 + rremove(&quot;x.text&quot;), 
+                                 ncol = 1, nrow = 3,
+                                 common.legend = TRUE, legend = &quot;right&quot;,
+                                 labels = c(&quot;Gráfico 1&quot;, &quot;Gráfico 2&quot;, &quot;Gráfico 3&quot;),
+                                 font.label = list(size = 10, color = &quot;blue&quot;))
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Também podemos acrescentar título e rodapé para o conjunto de gráficos:</p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3 + rremove(&quot;x.text&quot;), 
+                                 ncol = 1, nrow = 3,
+                                 common.legend = TRUE, legend = &quot;right&quot;,
+                                 labels = c(&quot;Gráfico 1&quot;, &quot;Gráfico 2&quot;, &quot;Gráfico 3&quot;),
+                                 font.label = list(size = 10, color = &quot;blue&quot;))
+
+graficos_combinados &lt;- annotate_figure(graficos_combinados,
+                top = text_grob(label = &quot;Estudo sobre consumo de combustível&quot;, face = &quot;bold&quot;, size = 16),
+                bottom = text_grob(label = &quot;Fonte:\nDataset mpg&quot;, face = &quot;italic&quot;, size = 10, color = &quot;red&quot;, x = 0.93))
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>graficos_combinados &lt;- ggarrange(plot1, plot2, plot3 + rremove(&quot;x.text&quot;), 
+                                 ncol = 1, nrow = 3,
+                                 common.legend = TRUE, legend = &quot;right&quot;,
+                                 labels = c(&quot;Gráfico 1&quot;, &quot;Gráfico 2&quot;, &quot;Gráfico 3&quot;),
+                                 font.label = list(size = 10, color = &quot;blue&quot;))
+
+graficos_combinados &lt;- annotate_figure(graficos_combinados,
+                top = text_grob(label = &quot;Estudo sobre consumo de combustível&quot;, face = &quot;bold&quot;, size = 16),
+                bottom = text_grob(label = &quot;Fonte:\nDataset mpg&quot;, face = &quot;italic&quot;, size = 10, color = &quot;red&quot;, x = 0.93))
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Agora vamos exportar os gráficos em alta definição:</p>
+<pre class="r"><code>tiff(filename = &quot;estudo.tiff&quot;, width = 3500, height = 3500, res = 300)
+graficos_combinados
+dev.off()</code></pre>
+<p>Observe que na função <code>tiff()</code> definimos o nome do arquivo seguido da extensão, as dimensões em <em>pixels</em> e a resolução em <em>ppi</em>.</p>
+<p>Aqui as informações sobre a imagem exportada:</p>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/1582561545831.png" /></p>
+</div>
+<div id="considerações-finais" class="section level1">
+<h1>Considerações finais</h1>
+<p>O pacote <strong>ggpubr</strong> não é o único capaz de criar um grid de gráficos no R, mas gosto da sua simplicidade. Inclusive ele possibilita a crição de gráficos através de funções como <code>ggboxplot()</code>, <code>ggscatter()</code> e <code>gghistogram()</code>, de modo que não seja necessário utilizar explicitamente o <strong>ggplot2</strong>.</p>
+<p>A função <code>tiff()</code>, presente no pacote <strong>grDevices</strong>, não é a única forma de exportar gráficos para uma imagem. De maneira análoga também podemos usar as funções <code>bmp()</code>, <code>jpeg()</code> e <code>png()</code> para exportar os gráficos em outros formatos.</p>
+<p>A minha dica é: aproveite os exemplos aqui demonstrados para ter uma idéia de como as coisas funcionam mas não deixe de explorar a documentação dos pacotes.</p>
+<p><em>O script está disponível no <a href="https://github.com/juniorssz/arrange-plots-example">GitHub</a>.</em></p>
+</div>
+<div id="referências-e-materiais-úteis" class="section level1">
+<h1>Referências e materiais úteis</h1>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/ggpubr/ggpubr.pdf">Documentação Ggpubr</a></li>
+<li><a href="https://ggplot2.tidyverse.org/">Documentação Ggplot2</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">Folha de referência (cheat sheet) Ggplot2</a></li>
+<li><a href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/">Easy Way to Mix Multiple Graphs on The Same Page</a></li>
+<li><a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/03-vis-ggplot2.html">Recursos de visualização do R com ggplot2</a></li>
+</ul>
+<p>[EDIT]</p>
+<p>Uma pergunta que me fizeram e que eu acabei esquecendo de mencionar neste post foi a seguinte: Em um conjunto com 3 gráficos, como fazer para que fiquem dois na linha superior e um ocupando toda a linha inferior?</p>
+<p>Pois bem, supondo que o estado inicial seja um conjunto com dois boxplots:</p>
+<pre class="r"><code>box_plot1 &lt;- ggplot(mpg, aes(x = trans, y = cty)) +
+  geom_boxplot(alpha = 0.7, color = &quot;blue&quot;, fill = &quot;blue&quot;) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+box_plot2 &lt;- ggplot(mpg, aes(x = trans, y = hwy)) +
+  geom_boxplot(alpha = 0.7, color = &quot;blue&quot;, fill = &quot;blue&quot;) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+boxplots_combinados &lt;- ggarrange(box_plot1, box_plot2, 
+                                 nrow = 1, ncol = 2)
+
+boxplots_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>E agora deseja-se acrescentar um gráfico de barras ocupando todo o espaço sob os boxplots:</p>
+<pre class="r"><code>bar_plot &lt;- ggplot(mpg, aes(x = trans)) +
+  geom_bar(alpha = 0.7, color = &quot;blue&quot;, fill = &quot;blue&quot;) +
+  labs(x = &quot;Transmissão&quot;, y = &quot;Frequência&quot;) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+graficos_combinados &lt;- ggarrange(boxplots_combinados, 
+                                 bar_plot,
+                                 nrow = 2, ncol = 1)
+
+graficos_combinados</code></pre>
+<p><img src="/blog/2020-02-24-agrupando-gráficos-do-r-em-uma-imagem-de-alta-resolução/index.pt-br_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>O raciocínio aqui é simples: foi criado um novo conjunto, sendo que o conjunto com os dois boxplots foi incluido como se fosse um único gráfico. Em seguida, foi incluído o gráfico de barras e depois ajustado o conjunto com duas linhas e uma coluna.</p>
+</div>
