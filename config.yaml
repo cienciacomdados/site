@@ -3,7 +3,7 @@ title: Ciência com Dados
 theme: hugo-universal-theme
 languageCode: en-us
 defaultContentLanguage: pt-br
-disqusShortname: 
+disqusShortname: cienciacomdados
 googleAnalytics: ''
 paginate: 10
 menu:
@@ -52,9 +52,8 @@ menu:
 params:
   about_us: <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
     fames ac turpis egestas.</p>
-  address: "<p class=\"text-uppercase\"><strong>Ciência com Dados</strong>\n        <br>Curitiba-PR\n
-    \       <br>\n        <strong>Brasil</strong>\n      </p>\n      "
-  author: DevCows
+  address: "<p class=\"text-uppercase\"><strong>Ciência com Dados</strong><br>Curitiba-PR<br>Brasil</p>"
+  author: acsjunior
   carousel:
     enable: yes
   clients:
