@@ -7,7 +7,6 @@ banner: img/banners/dplyr.jpg
 categories:
   - tutoriais
 tags:
-  - r
   - linguagem r
   - sql
   - dplyr

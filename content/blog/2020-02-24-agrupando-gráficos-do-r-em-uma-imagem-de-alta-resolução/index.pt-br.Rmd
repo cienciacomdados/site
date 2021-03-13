@@ -7,7 +7,6 @@ banner: img/banners/ggplot2_ggpubr.jpg
 categories:
   - tutoriais
 tags:
-  - r
   - linguagem r
   - ggplot2
   - ggpubr

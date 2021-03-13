@@ -7,7 +7,6 @@ banner: img/banners/ggplot2.jpg
 categories:
   - tutoriais
 tags:
-  - r
   - linguagem r
   - ggplot2
   - tidyverse

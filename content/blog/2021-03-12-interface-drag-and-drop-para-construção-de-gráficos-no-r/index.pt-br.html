@@ -1,0 +1,112 @@
+---
+title: Interface "drag and drop"​ para construção de gráficos no R
+author: acsjunior
+date: '2021-03-12'
+slug: []
+banner: img/banners/esquisse.jpg
+categories:
+  - tutoriais
+tags:
+  - linguagem r
+  - ggplot2
+  - esquisse
+  - visualização de dados
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>A linguagem R possui excelentes recursos para uma boa análise descritiva, principalmente quando o assunto é visualização de dados. No entanto, a necessidade de digitar algumas linhas de código para conseguir plotar determinado gráfico pode complicar o trabalho de quem ainda não tem tanta fluência com a linguagem, pois convenhamos que interromper toda hora a nossa linha de raciocínio para pesquisar “como fazer” atrapalha um pouco.</p>
+<p>O ggplot2 é um excelente pacote para visualização de dados, inclusive publiquei <a href="https://www.linkedin.com/pulse/visualizando-dados-em-r-com-ggplot2-antonio-c-da-silva-júnior/?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3B10LxkrLTRLer279lFAUu3Q%3D%3D">este post</a> sobre ele, porém é necessário um pouco de prática até adquirir fluência para redigir suas linhas de código e, consequentemente, plotar os visuais desejados, entretanto, o pacote <strong>esquisse</strong> pode tornar a nossa vida um pouco mais fácil.</p>
+<p>De acordo com a documentação do pacote, o esquisse é um <em>add-in</em> que nos permite explorar interativamente os dados, visualizando-os com o pacote <em>ggplot2</em>. Em outras palavras, ao invés de digitar linhas de código, basicamente o que precisamos é arrastar a soltar as variavés e pronto, o gráfico está construído!</p>
+<p>Vamos ver como esta mágica funciona.</p>
+<div id="passo-a-passo" class="section level1">
+<h1>Passo a passo</h1>
+<p>Para este exemplo de uso vamos precisar somente dos pacotes esquisse e ggplot2:</p>
+<pre class="r"><code>install.packages(&quot;esquisse&quot;)
+install.packages(&quot;ggplot2&quot;)</code></pre>
+<p>Em seguida carregamos os pacotes:</p>
+<pre class="r"><code>library(esquisse)
+library(ggplot2)</code></pre>
+<p>A idéia aqui é utilizar o famoso conjunto de dados iris.</p>
+<pre class="r"><code>data(iris)</code></pre>
+<p>Aqui as primeiras linhas do dataset:</p>
+<pre class="r"><code>head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Uma vez que os pacotes e o dataset estão carregados, basta chamar a função <code>esquisser()</code> passando o dataset como argumento:</p>
+<pre class="r"><code>esquisser(iris)</code></pre>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854016481.png" style="width:100.0%;height:100.0%" /></p>
+<p>E agora começa a brincadeira. Escolhi aleatoriamente a variável Sepal.Length e arrastei para o eixo x. Um histograma foi gerado automaticamente:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854047407.png" style="width:100.0%;height:100.0%" /></p>
+<p>Dependendo das variáveis em questão, é possível alterar o tipo do gráfico:</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854079811.png" style="width:30.0%;height:30.0%" />
+</center>
+<p>Mas vamos continuar com o histograma. No menu <strong>Plot options</strong> encontramos configurações específicas do tipo de gráfico. Neste caso, podemos alterar, por exemplo, o número de bins:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854111159.png" style="width:100.0%;height:100.0%" /></p>
+<p>No menu <strong>Data</strong> é possível aplicar filtros no dataset:</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854140091.png" style="width:50.0%;height:50.0%" />
+</center>
+<p>Arrastanto, por exemplo, a variável <em>Petal.Length</em> para o eixo <em>y</em>, temos um gráfico de dispersão:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854166786.png" style="width:100.0%;height:100.0%" /></p>
+<p>Podemos aumentar o tamanho dos pontos e alterar a cor, por exemplo:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854194216.png" style="width:100.0%;height:100.0%" /></p>
+<p>Ainda no menu <strong>Plot options</strong> é possível incluir uma curva de regressão não paramétrica, ativando Smooth line:</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854222224.png" style="width:40.0%;height:40.0%" />
+</center>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854238943.png" style="width:100.0%;height:100.0%" /></p>
+<p>Podemos criar facetas apenas arrastando uma variável categórica para <em>facet</em>:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576854265542.png" style="width:100.0%;height:100.0%" /></p>
+<p>Para melhorar a visualização, podemos alterar o tema em Plot options:</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858295456.png" style="width:40.0%;height:40.0%" />
+</center>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858313839.png" style="width:100.0%;height:100.0%" /></p>
+<p>Arrastando uma variável numérica para <em>size</em>, os tamanhos dos pontos são ajustados proporcionalmente:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858342346.png" style="width:100.0%;height:100.0%" /></p>
+<p>Podemos também criar um gráfico de barras. Para isto, basta arrastar uma variável categórica para o eixo x:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858428419.png" style="width:100.0%;height:100.0%" />
+Arrastando, por exemplo, a variável <em>Sepal.Width</em> para o eixo <em>y</em>, temos boxplots:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858441019.png" style="width:100.0%;height:100.0%" /></p>
+<p>E para colorir os gráficos em função de uma variável, basta arrastar a respectiva variável para <em>fill</em>:</p>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858468349.png" style="width:100.0%;height:100.0%" /></p>
+<p>Podemos customizar título, subtítulo, legenda e etc…</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858502005.png" style="width:30.0%;height:30.0%" />
+</center>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858516288.png" style="width:100.0%;height:100.0%" /></p>
+<p>E a ótima notícia para quem não domina o ggplot2: em <em>Export &amp; code</em> é possível copiar o código gerado:</p>
+<center>
+<img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/1576858540767.png" style="width:40.0%;height:40.0%" />
+</center>
+<p>Perceba que o gráfico gerado através do código exportado é exatamente o mesmo:</p>
+<pre class="r"><code>ggplot(iris) +
+ aes(x = Species, y = Sepal.Width, fill = Species) +
+ geom_boxplot() +
+ scale_fill_hue() +
+ labs(x = &quot;Nome da Espécie&quot;, y = &quot;Largura da Sépala&quot;, title = &quot;Espécies de Iris&quot;, subtitle = &quot;Exemplo utilizando Esquisse&quot;, caption = &quot;Gráfico 1&quot;, fill = &quot;Espécie&quot;) +
+ theme_minimal()</code></pre>
+<p><img src="/blog/2021-03-12-interface-drag-and-drop-para-construção-de-gráficos-no-r/index.pt-br_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="considerações-finais" class="section level1">
+<h1>Considerações finais</h1>
+<p>A página do esquisse diz que o objetivo deste pacote é permitir a exploração rápida dos dados para extrair informações, mas alerta que não é possível ainda utilizar todo o poder do <em>ggplot2</em>. Ou seja, o esquisse esta aí para agilizar a nossa análise, mas diante da necessidade de gráficos com detalhes mais complexos, talvez não seja possível através dessa interface. Portanto faça bom uso do esquisse nas suas análises mas não deixe de praticar o <em>ggplot2</em> raíz (por linhas de código).</p>
+</div>
+<div id="referências-e-materiais-úteis" class="section level1">
+<h1>Referências e materiais úteis</h1>
+<ul>
+<li><a href="https://dreamrs.github.io/esquisse/">https://dreamrs.github.io/esquisse/</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2016/03/ggplot2-cheatsheet-portuguese.pdf">https://rstudio.com/wp-content/uploads/2016/03/ggplot2-cheatsheet-portuguese.pdf</a></li>
+<li><a href="https://www.datanovia.com/en/lessons/introduction-to-ggplot2/">https://www.datanovia.com/en/lessons/introduction-to-ggplot2/</a></li>
+<li><a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/03-vis-ggplot2.html">http://leg.ufpr.br/~walmes/cursoR/data-vis/03-vis-ggplot2.html</a></li>
+</ul>
+</div>

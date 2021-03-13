@@ -1,0 +1,50 @@
+---
+title: Power BI - Obtendo dados do Google Sheets
+author: acsjunior
+date: '2019-05-09'
+slug: []
+banner: img/banners/pbi_sheets.jpg
+categories:
+  - tutoriais
+tags:
+  - power bi
+  - google sheets
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Embora o Power BI nos permita obter dados de inúmeras fontes, infelizmente ele não possui um conector específico para o Google Sheets. No entanto, é possível obter dados de planilhas do Google de uma maneira relativamente simples.</p>
+<div id="exemplo-prático" class="section level1">
+<h1>Exemplo prático</h1>
+<p>O primeiro passo é alterar as opções de compartilhamento da planilha escolhida para ser a fonte de dados. É necessário que qualquer pessoa com o link possa acessá-la.</p>
+<center>
+<img src="/blog/2019-05-09-power-bi-obtendo-dados-do-google-sheets/index.pt-br_files/1557435655415.png" style="width:50.0%;height:50.0%" />
+</center>
+<p>[EDIT] <em>Caso seja imprescindível manter a planilha no modo privado, recomendo seguir <a href="https://www.linkedin.com/feed/update/urn:li:activity:6543657597847818240?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3Bg%2BNRE%2FsjRpiBS%2BDQm7vZDQ%3D%3D">este tutorial</a>. Entretanto, após publicado, será necessário configurar um gateway local para atualizar os dados no serviço.</em></p>
+<p>Em seguida, selecionar o conector Web.</p>
+<center>
+<img src="/blog/2019-05-09-power-bi-obtendo-dados-do-google-sheets/index.pt-br_files/1557435698985.png" style="width:50.0%;height:50.0%" />
+</center>
+<p>Uma URL será solicitada, porém, antes é necessário alterar a URL da planilha para o seguinte formato: <code>https://docs.google.com/spreadsheets/d/[id planilha]/export?format=xlsx&amp;id=[id planilha]</code></p>
+<p><strong>Exemplo</strong>: aqui a URL original da planilha utilizada nesta demonstração: <code>https://cs.google.com/spreadsheets/d/1_JkXMrdyE_F_JPhNz_RXisI0P0vOQt_pi-7SEpsAxo8/edit#gid=0</code></p>
+<p>Observe que neste caso, <code>[id planilha]</code> = <code>1_JkXMrdyE_F_JPhNz_RXisI0P0vOQt_pi-7SEpsAxo8</code>.</p>
+<p>E agora a URL após a alteração: <code>https://docs.google.com/spreadsheets/d/1_JkXMrdyE_F_JPhNz_RXisI0P0vOQt_pi-7SEpsAxo8/export?format=xlsx&amp;id=1_JkXMrdyE_F_JPhNz_RXisI0P0vOQt_pi-7SEpsAxo8</code></p>
+<p>Feita a alteração e informada a URL, o próximo passo é selecionar as páginas que desejamos conectar com o Power BI e então prosseguir da mesma maneira que seria com outras fontes de dados. Neste exemplo eu selecionei somente a <em>Página1</em>.</p>
+<p><img src="/blog/2019-05-09-power-bi-obtendo-dados-do-google-sheets/index.pt-br_files/1557436069627.png" style="width:100.0%;height:100.0%" /></p>
+<p>E, no modo de edição, apenas removi as linhas em branco e alterei o nome da tabela para <em>Iris</em>.</p>
+<center>
+<img src="/blog/2019-05-09-power-bi-obtendo-dados-do-google-sheets/index.pt-br_files/1557436188931.png" style="width:50.0%;height:50.0%" />
+</center>
+<p>Após fechar e aplicar, tudo pronto para criar os relatórios dinâmicos.</p>
+<p><img src="/blog/2019-05-09-power-bi-obtendo-dados-do-google-sheets/index.pt-br_files/1557436500817.png" style="width:100.0%;height:100.0%" /></p>
+</div>
+<div id="ponto-de-atenção" class="section level1">
+<h1>Ponto de atenção</h1>
+<p>Nos testes que realizei não tive sucesso nos casos que havia tabela dinâmica em uma das páginas do Sheets, mas ao remover a página (ou somente a tabela dinâmica) a conexão foi estabelecida normalmente.</p>
+</div>
+<div id="conclusão" class="section level1">
+<h1>Conclusão</h1>
+<p>O Google Sheets está cada vez mais ganhando espaço em ambientes corporativos, onde o MS Excel já foi absoluto. E o Power BI, por sua vez, tem estado cada vez mais presente entre usuários não necessariamente especialistas em Business Intelligence. Portanto, esta interface Power BI x Google Sheets pode se tornar cada vez mais frequente no dia a dia de diversos profissionais e eu espero, sinceramente, que este artigo possa ser útil aos marinheiros de primeira viagem.</p>
+<p><em>Os arquivos utilizados neste exemplo estão disponíveis no <a href="https://drive.google.com/open?id=1ocdHR3_FgfU8DLuSpxpIdL5cfE67xMjj">GitHub</a></em></p>
+</div>

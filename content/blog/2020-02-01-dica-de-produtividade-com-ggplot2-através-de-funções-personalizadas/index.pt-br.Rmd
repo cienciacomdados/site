@@ -7,7 +7,6 @@ banner: img/banners/ggplot2_plot.jpg
 categories:
   - tutoriais
 tags:
-  - r
   - linguagem r
   - ggplot2
   - visualização de dados

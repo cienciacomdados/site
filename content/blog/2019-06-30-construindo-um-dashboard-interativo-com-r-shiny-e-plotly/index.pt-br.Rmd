@@ -7,7 +7,6 @@ banner: img/banners/shiny.jpg
 categories:
   - tutoriais
 tags:
-  - r
   - linguagem r
   - shiny
   - shinydashboard
