@@ -50,8 +50,7 @@ menu:
       url: https://www.youtube.com/channel/UCsTFcJXAjEoqZDXaDVfRZDg
       weight: 7
 params:
-  about_us: <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
-    fames ac turpis egestas.</p>
+  about_us: <p><strong>Ciência com Dados</strong> é uma iniciativa de <a href="https://acsjunior.com/">acsjunior</a>.</p>
   address: "<p class=\"text-uppercase\"><strong>Ciência com Dados</strong><br>Curitiba-PR<br>Brasil</p>"
   author: acsjunior
   carousel:
@@ -83,10 +82,10 @@ params:
   mainSections: blog
   recent_posts:
     enable: yes
-    subtitle: Pellentesque habitant morbi tristique senectus et netus et malesuada
-      fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
-      tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-      ultricies mi vitae est. Mauris placerat eleifend leo.
+    # subtitle: Pellentesque habitant morbi tristique senectus et netus et malesuada
+    #  fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
+    #  tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+    #  ultricies mi vitae est. Mauris placerat eleifend leo.
     title: Publicações
   see_more:
     enable: yes
@@ -105,9 +104,9 @@ params:
     title: Testimonials
   topbar:
     enable: yes
-    text: "<p class=\"hidden-md hidden-lg\"><a href=\"#\" data-animate-hover=\"pulse\"><i
-      class=\"fas fa-phone\"></i></a>\n      <a href=\"#\" data-animate-hover=\"pulse\"><i
-      class=\"fas fa-envelope\"></i></a>\n      </p>\n      "
+    #text: "<p class=\"hidden-md hidden-lg\"><a href=\"#\" data-animate-hover=\"pulse\"><i
+    #  class=\"fas fa-phone\"></i></a>\n      <a href=\"#\" data-animate-hover=\"pulse\"><i
+    #  class=\"fas fa-envelope\"></i></a>\n      </p>\n      "
   twitter_site: GoHugoIO
   viewMorePostLink: /blog/
   widgets:

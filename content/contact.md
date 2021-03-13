@@ -3,8 +3,9 @@ id: contact
 title: Contato
 ---
 
-# Como podemos ajudar?
+Você pode entrar em contato por meio das redes sociais:
 
-Are you curious about something? Do you have some kind of problem with our products? As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.
+* [Instagram](https://www.instagram.com/cienciacomdados/)
+* [Facebook](https://www.facebook.com/Ciência-com-Dados-105816291579374)
 
-Please feel free to contact us, our customer service center is working for you 24/7.
+Ou através do formulário abaixo:
