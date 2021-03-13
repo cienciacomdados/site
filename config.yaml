@@ -60,6 +60,7 @@ params:
     enable: yes
     subtitle: ''
     title: Parceiros
+  email: junior@cienciacomdados.com.br
   contact_form_ajax: no
   copyright: Copyright (c) 2021, Ciência com Dados; todos os direitos reservados.
   date_format: January 2, 2006
@@ -73,7 +74,7 @@ params:
   facebook_site: ''
   features:
     enable: yes
-  formspree_action: https://formspree.io/sample/of/endpoint
+  formspree_action: https://formspree.io/f/xbjpnaew
   googleMapsApiKey: AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y
   latitude: '-12.043333'
   logo: img/logo.png
