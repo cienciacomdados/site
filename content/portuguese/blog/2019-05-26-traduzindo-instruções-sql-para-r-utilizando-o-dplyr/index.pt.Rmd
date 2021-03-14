@@ -1,0 +1,227 @@
+---
+title: Traduzindo instruções SQL para R utilizando o dplyr
+author: Júnior
+date: '2019-05-26'
+slug: []
+categories:
+  - Tutoriais
+tags:
+  - R
+  - SQL
+  - dplyr
+  - Data Wrangling
+bg_image: images/slider-bg.jpg
+image: images/blog/dplyr.jpg
+type: post
+# description: this is meta description
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Quando comecei a programar em R a minha principal referência para manipulação de dados era a linguagem SQL. Por conta disso, diante de determinadas necessidades, eu desenvolvia a solução "pensando" em SQL e depois traduzia para R, mais ou menos como fazemos quando estamos aprendendo um novo idioma.
+
+É claro que, com a prática, veio a fluência, entretanto, conhecer o pacote **dplyr** fez total diferença.
+
+# O que é o dplyr?
+
+De acordo com a definição da própria [documentação](https://dplyr.tidyverse.org/), **dplyr** é uma gramática de manipulação de dados, que fornece um conjunto de verbetes que ajudam a resolver os desafios mais comuns de manipulação de dados.
+
+# Mãos à obra
+
+Abaixo vou demonstrar algumas das principais funcionalidades deste poderoso pacote, fazendo um paralelo com a linguagem SQL para facilitar a absorção.
+
+## Dataset
+
+O conjunto de dados que irei utilizar é o **gapminder**, que pode ser obtido através da biblioteca que possui o mesmo nome.
+
+```{r}
+library(gapminder)
+```
+
+```{r}
+head(gapminder)
+```
+
+## Select
+
+A função <code>select()</code> permite escolher variáveis específicas do conjunto de dados.
+
+Escolhendo as variáveis *country* e *pop*:
+```{r}
+library(dplyr)
+```
+
+```{r}
+gapminder %>%
+  select(country, pop) %>%
+  head()
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT country, pop FROM gapminder
+```
+
+## Arrange
+
+Com a função <code>arrange()</code> podemos ordenar os dados em função de uma ou múltiplas variáveis.
+
+Ordenando a instrução anterior pelo país (ordem decrescente) e pela população (ordem crescente):
+
+```{r}
+gapminder %>%
+  select(country, pop) %>%
+  arrange(desc(country), pop) %>%
+  head()
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT country, pop FROM gapminder
+ORDER BY country DESC, pop
+```
+
+## Filter
+
+Com a função <code>filter()</code> podemos filtrar os dados em função de uma ou múltiplas condições.
+
+Obtendo somente as observações onde o continente é Europa e o ano é 1982:
+
+```{r}
+gapminder %>%
+  filter(continent == "Europe", year == 1982) %>%
+  head()
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT * FROM gapminder 
+WHERE continent = "Europe" AND year = 1982
+```
+
+## Summarize
+
+A função <code>summarize()</code> nos permite resumir os dados em um único valor.
+
+Obtendo a soma da expectativa de vida e a média do PIB per capita:
+```{r}
+gapminder %>%
+  summarise(SomaExpVida = sum(lifeExp), MediaPib = mean(gdpPercap)) %>%
+  head()
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT 
+  SUM(lifeExp) AS SomaExpVida, 
+  AVG(gdpPercap) AS MediaPib 
+FROM gapminder
+```
+
+## Group_by
+
+Com a função <code>group_by()</code> podemos agrupar os dados resumidos em função de uma ou mais variáveis.
+
+Agrupando a instrução anterior por ano, filtrando somente as observações referentes ao continente asiático e colocando o ano em ordem decrescente.
+```{r}
+gapminder %>%
+  filter(continent == "Asia") %>%
+  group_by(year) %>%
+  summarise(SomaExpVida = sum(lifeExp), 
+            MediaPib = mean(gdpPercap)) %>%
+  arrange(desc(year))
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT 
+  year,
+  SUM(lifeExp) AS SomaExpVida, 
+  AVG(gdpPercap) AS MediaPib 
+FROM gapminder
+WHERE continent = "Asia"
+GROUP BY year
+ORDER BY year DESC
+```
+
+## Mutate
+
+A função <code>mutate()</code> nos permite adicionar novas variáveis em função de variáveis já existentes
+
+Dividindo a população por 2 e atribuindo o resultado a uma nova variável chamada *pop2*.
+
+```{r}
+gapminder %>%
+  mutate(pop2 = pop/2) %>%
+  head()
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT *, pop/2 AS pop2 FROM gapminder
+```
+
+## Família Join
+
+As funções da família join permitem associar os dados de duas tabelas.
+
+Para ajudar com o exemplo, criei dois pequenos conjuntos de dados:
+
+```{r}
+atletas_gols <- data.frame(
+  atleta = c("Everaldo", "Artur", "Marcinho", "Daniel Amorim"),
+  gols = c(3, 2, 2, 1)
+)
+
+atletas_gols
+```
+
+```{r}
+atletas_clubes <- data.frame(
+  atleta = c("Eduardo Sasha", "Artur", "Marcinho", "Everton", "Everaldo", "Daniel Amorim"),
+  clube = c("Santos", "Bahia", "Fortaleza", "Grêmio", "Chapecoense", "Avaí"),
+  posicao = c(4, 11, 14, 16, 17, 18)
+)
+
+atletas_clubes
+```
+
+A função <code>left_join()</code> retorna todos os dados do primeiro dataset (left) associados dados correspondentes do segundo (right).
+
+Obtendo os dados dos atletas do primeiro dataset associados aos respectivos clubes, filtrando somente os atletas que marcaram mais de um gol:
+
+```{r}
+atletas_gols %>%
+  left_join(atletas_clubes, by="atleta") %>%
+  select(atleta, gols, clube) %>%
+  filter(gols > 1) 
+```
+
+Instrução similar em SQL:
+
+```{sql, eval=FALSE}
+SELECT 
+  atletas_gols.atleta,
+  atletas_gols.gols,
+  atletas_clubes.clube
+FROM atletas_gols
+LEFT JOIN atletas_clubes
+ON atletas_gols.atleta = atletas_clubes.atleta
+WHERE atletas_gols.gols > 1
+```
+
+A família join ainda possui as funções <code>inner_join()</code>, <code>full_join()</code>, <code>right_join()</code> e mais algumas outras.
+
+# Conclusão
+
+O objetivo deste post foi demonstrar as principais funcionalidades do **dplyr**, comparando com instruções similares em SQL, no entanto, é válido ressaltar que este pacote é muito mais abrangente. A dica é explorar a [documentação](https://dplyr.tidyverse.org/), que é bem explicativa, e manter [esta cola](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf) sempre por perto.
+
+*[Clique aqui](https://drive.google.com/drive/folders/1PfdfAmo4KddcKjrNoUffDo4Nor5dtk1T?usp=sharing) para baixar o script que utilizei nos exemplos.*

@@ -15,11 +15,11 @@
 - id: all
   translation: All
 - id: posted_by
-  translation: Posted By
+  translation: Publicado por
 - id: read_more
-  translation: Continue Reading
+  translation: Continue lendo 
 - id: latest_posts
-  translation: Latest Posts
+  translation: Últimas publicações
 - id: page_prev
   translation: Prev
 - id: page_next

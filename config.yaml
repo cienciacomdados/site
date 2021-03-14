@@ -14,7 +14,7 @@ markup:
       unsafe: yes
 params:
   author: acsjunior
-  contact_form_action: '#'
+  contact_form_action: https://formspree.io/f/xbjpnaew
   cookies:
     enable: yes
     expire_days: 2
@@ -90,50 +90,50 @@ Languages:
     menu:
       footer:
         - URL: about
-          name: About
+          name: Sobre
           weight: 1
-        - URL: project
-          name: Project
-          weight: 2
-        - URL: service
-          name: Service
-          weight: 3
-        - URL: pricing
-          name: Pricing
-          weight: 4
-        - URL: faq
-          name: FAQ
-          weight: 5
+        #- URL: project
+        #  name: Project
+        #  weight: 2
+        #- URL: service
+        #  name: Service
+        #  weight: 3
+        #- URL: pricing
+        #  name: Pricing
+        #  weight: 4
+        #- URL: faq
+        #  name: FAQ
+        #  weight: 5
         - URL: contact
-          name: Contact
+          name: Contato
           weight: 6
       main:
         - URL: /
           name: Home
           weight: 1
         - URL: about
-          name: About
+          name: Sobre
           weight: 2
-        - URL: project
-          name: Project
-          weight: 3
+        #- URL: project
+        #  name: Project
+        #  weight: 3
         - URL: blog
           name: Blog
           weight: 4
-        - hasChildren: yes
-          name: Pages
-          weight: 5
-        - URL: faq
-          name: FAQ
-          parent: Pages
-        - URL: pricing
-          name: Pricing
-          parent: Pages
-        - URL: service
-          name: Service
-          parent: Pages
+        #- hasChildren: yes
+        #  name: Pages
+        #  weight: 5
+        #- URL: faq
+        #  name: FAQ
+        #  parent: Pages
+        #- URL: pricing
+        #  name: Pricing
+        #  parent: Pages
+        #- URL: service
+        #  name: Service
+        #  parent: Pages
         - URL: contact
-          name: Contact
+          name: Contato
           weight: 6
     weight: 1
   en:

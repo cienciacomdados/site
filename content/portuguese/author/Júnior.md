@@ -1,15 +1,17 @@
 ---
-bg_image: images/featue-bg.jpg
+bg_image: images/slider-bg.jpg
 draft: false
-email: email2@example.org
+email: juniorssz@gmail.com
+avatar: https://acsjunior.com/author/antonio-c.-da-silva-junior/avatar_hu59476b84095515547ac166fd9a959aa8_91462_270x270_fill_q90_lanczos_center.jpg 
 social:
-- icon: ion-social-facebook-outline
+- icon: ion-social-linkedin-outline
   link: '#'
 - icon: ion-social-twitter-outline
   link: '#'
 - icon: ion-social-pinterest-outline
   link: '#'
-title: Mark Dinn
+title: Antonio C. da Silva Júnior
+nick: Júnior
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue. Duis auctor lacus id vehicula gravida. Nam suscipit vitae purus et laoreet.
