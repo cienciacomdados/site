@@ -1,117 +1,193 @@
-baseurl: /
+baseURL: https://cienciacomdados.netlify.app
 title: Ciência com Dados
-theme: hugo-universal-theme
-languageCode: en-us
-defaultContentLanguage: pt-br
-disqusShortname: 
-googleAnalytics: ''
-paginate: 10
-menu:
-  main:
-    - identifier: home
-      name: Home
-      url: /
-      weight: 1
-    - identifier: blog
-      name: Blog
-      url: /blog/
-      weight: 2
-    - identifier: contact
-      name: Contato
-      url: /contact/
-      weight: 4
-  topbar:
-    - name: Email
-      pre: <i class='fas fa-2x fa-envelope'></i>
-      url: mailto:junior@cienciacomdados.com.br
-      weight: 1
-    - name: Instagram
-      pre: <i class='fab fa-2x fa-instagram'></i>
-      url: https://www.instagram.com/cienciacomdados/
-      weight: 2
-    - name: Facebook
-      pre: <i class='fab fa-2x fa-facebook'></i>
-      url: https://www.facebook.com/Ciência-com-Dados-105816291579374
-      weight: 3
-    - name: Twitter
-      pre: <i class='fab fa-2x fa-twitter'></i>
-      url: https://twitter.com/cienciacomdados
-      weight: 4
-    - name: Linkedin
-      pre: <i class='fab fa-2x fa-linkedin'></i>
-      url: https://www.linkedin.com/company/cienciacomdados
-      weight: 5
-    - name: GitHub
-      pre: <i class='fab fa-2x fa-github'></i>
-      url: https://github.com/cienciacomdados
-      weight: 6
-    - name: YouTube
-      pre: <i class='fab fa-2x fa-youtube'></i>
-      url: https://www.youtube.com/channel/UCsTFcJXAjEoqZDXaDVfRZDg
-      weight: 7
+theme: airspace-hugo
+paginate: '4'
+summaryLength: '30'
+disqusShortname: ''
+disableLanguages: [en]
+defaultContentLanguage: pt
+outputs:
+  home: HTML
+markup:
+  goldmark:
+    renderer:
+      unsafe: yes
 params:
-  about_us: <p><strong>Ciência com Dados</strong> é uma iniciativa de <a href="https://acsjunior.com/">acsjunior</a>.</p>
-  address: "<p class=\"text-uppercase\"><strong>Ciência com Dados</strong><br>Curitiba-PR<br>Brasil</p>"
   author: acsjunior
-  carousel:
+  contact_form_action: '#'
+  cookies:
     enable: yes
-  clients:
-    enable: yes
-    subtitle: ''
-    title: Parceiros
+    expire_days: 2
+  description: This is meta description
   email: junior@cienciacomdados.com.br
-  contact_form_ajax: no
-  copyright: Copyright (c) 2021, Ciência com Dados; todos os direitos reservados.
-  date_format: January 2, 2006
-  default_sharing_image: img/sharing-default.png
-  defaultDescription: Site template made by devcows using hugo
-  defaultKeywords:
-    - devows
-    - hugo
-    - go
-  enableGoogleMaps: yes
-  facebook_site: ''
-  features:
+  gmap:
     enable: yes
-  formspree_action: https://formspree.io/f/xbjpnaew
-  googleMapsApiKey: AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y
-  latitude: '-12.043333'
-  logo: img/logo.png
-  logo_small: img/logo-small.png
-  longitude: '-77.028333'
-  mainSections: blog
-  recent_posts:
+    gmap_api: AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU
+    map_latitude: '-25.4950501'
+    map_longitude: '-49.4298835'
+    map_marker: images/marker.png
+  google_analitycs_id: ''
+  location: Curitiba, PR - Brasil
+  logo: images/logo.png
+  logo_width: 150px
+  # mobile: 0124857985320
+  multi_author: no
+  nav_button:
     enable: yes
-    # subtitle: Pellentesque habitant morbi tristique senectus et netus et malesuada
-    #  fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
-    #  tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-    #  ultricies mi vitae est. Mauris placerat eleifend leo.
-    title: Últimos posts
-  see_more:
+    label: Get A Quote
+    link: contact
+  plugins:
+    css:
+      - attributes: media='screen'
+        link: plugins/bootstrap/bootstrap.min.css
+      - attributes: ''
+        link: plugins/Ionicons/css/ionicons.min.css
+      - attributes: ''
+        link: plugins/magnific-popup/magnific-popup.min.css
+      - attributes: ''
+        link: plugins/slick/slick.css
+    js:
+      - attributes: ''
+        link: plugins/jQuery/jquery.min.js
+      - attributes: ''
+        link: plugins/bootstrap/bootstrap.min.js
+      - attributes: ''
+        link: plugins/slick/slick.min.js
+      - attributes: ''
+        link: plugins/magnific-popup/magnific-popup.min.js
+      - attributes: ''
+        link: plugins/shuffle/shuffle.min.js
+      - attributes: defer
+        link: plugins/google-map/gmap.js
+  preloader:
     enable: yes
-    icon: far fa-file-alt
-    link_text: Check other homepages
-    link_url: '#'
-    subtitle: We have prepared for you more than 40 different HTML pages, including
-      5 variations of homepage.
-    title: Do you want to see more?
-  style: blue
-  testimonials:
-    enable: no
-    subtitle: We have worked with many clients and we always like to hear they come
-      out from the cooperation happy and satisfied. Have a look what our clients said
-      about us.
-    title: Testimonials
-  topbar:
-    enable: yes
-    #text: "<p class=\"hidden-md hidden-lg\"><a href=\"#\" data-animate-hover=\"pulse\"><i
-    #  class=\"fas fa-phone\"></i></a>\n      <a href=\"#\" data-animate-hover=\"pulse\"><i
-    #  class=\"fas fa-envelope\"></i></a>\n      </p>\n      "
-  twitter_site: GoHugoIO
-  viewMorePostLink: /blog/
+    preloader: ''
+  social:
+    - icon: ion-social-youtube-outline
+      link: '#'
+    - icon: ion-social-linkedin-outline
+      link: '#'
+    #- icon: ion-social-pinterest-outline
+    #  link: '#'
+    - icon: ion-social-github-outline
+      link: '#'
+    - icon: ion-social-twitter-outline
+      link: '#'
+    - icon: ion-social-facebook-outline
+      link: '#'
   widgets:
-    categories: yes
-    search: yes
-    tags: yes
-Permalinks:
-  blog: /blog/:year/:month/:day/:filename/
+    sidebar:
+      - recent_posts
+      - taxonomy_category
+      - taxonomy_tags
+Languages:
+  pt:
+    contentDir: content/portuguese
+    copyright: Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights
+      Reserved
+    languageCode: pt-br
+    languageName: Pt
+    menu:
+      footer:
+        - URL: about
+          name: About
+          weight: 1
+        - URL: project
+          name: Project
+          weight: 2
+        - URL: service
+          name: Service
+          weight: 3
+        - URL: pricing
+          name: Pricing
+          weight: 4
+        - URL: faq
+          name: FAQ
+          weight: 5
+        - URL: contact
+          name: Contact
+          weight: 6
+      main:
+        - URL: /
+          name: Home
+          weight: 1
+        - URL: about
+          name: About
+          weight: 2
+        - URL: project
+          name: Project
+          weight: 3
+        - URL: blog
+          name: Blog
+          weight: 4
+        - hasChildren: yes
+          name: Pages
+          weight: 5
+        - URL: faq
+          name: FAQ
+          parent: Pages
+        - URL: pricing
+          name: Pricing
+          parent: Pages
+        - URL: service
+          name: Service
+          parent: Pages
+        - URL: contact
+          name: Contact
+          weight: 6
+    weight: 1
+  en:
+    contentDir: content/english
+    copyright: Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights
+      Reserved
+    languageCode: en-us
+    languageName: En
+    menu:
+      footer:
+        - URL: about
+          name: About
+          weight: 1
+        - URL: project
+          name: Project
+          weight: 2
+        - URL: service
+          name: Service
+          weight: 3
+        - URL: pricing
+          name: Pricing
+          weight: 4
+        - URL: faq
+          name: FAQ
+          weight: 5
+        - URL: contact
+          name: Contact
+          weight: 6
+      main:
+        - URL: /
+          name: Home
+          weight: 1
+        - URL: about
+          name: About
+          weight: 2
+        - URL: project
+          name: Project
+          weight: 3
+        - URL: blog
+          name: Blog
+          weight: 4
+        - hasChildren: yes
+          name: Pages
+          weight: 5
+        - URL: faq
+          name: FAQ
+          parent: Pages
+        - URL: pricing
+          name: Pricing
+          parent: Pages
+        - URL: service
+          name: Service
+          parent: Pages
+        - URL: contact
+          name: Contact
+          weight: 6
+    weight: 2
