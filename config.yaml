@@ -63,18 +63,18 @@ params:
     enable: yes
     preloader: ''
   social:
-    - icon: ion-social-youtube-outline
-      link: '#'
-    - icon: ion-social-linkedin-outline
-      link: '#'
-    #- icon: ion-social-pinterest-outline
-    #  link: '#'
-    - icon: ion-social-github-outline
-      link: '#'
+    - icon: ion-ios-email-outline
+      link: mailto:junior@cienciacomdados.com.br?subject=Contato
+    - icon: ion-social-instagram-outline
+      link: https://www.instagram.com/cienciacomdados
     - icon: ion-social-twitter-outline
-      link: '#'
+      link: https://twitter.com/cienciacomdados
     - icon: ion-social-facebook-outline
-      link: '#'
+      link: https://www.facebook.com/Ciência-com-Dados-105816291579374
+    - icon: ion-social-linkedin-outline
+      link: https://www.linkedin.com/company/cienciacomdados
+    - icon: ion-social-youtube-outline
+      link: https://www.youtube.com/channel/UCsTFcJXAjEoqZDXaDVfRZDg  
   widgets:
     sidebar:
       - recent_posts
@@ -92,6 +92,9 @@ Languages:
         - URL: about
           name: Sobre
           weight: 1
+        - URL: blog
+          name: Blog
+          weight: 2
         #- URL: project
         #  name: Project
         #  weight: 2
@@ -111,27 +114,36 @@ Languages:
         - URL: /
           name: Home
           weight: 1
-        - URL: about
-          name: Sobre
-          weight: 2
+        #- URL: about
+        #  name: Sobre
+        #  weight: 2
         #- URL: project
         #  name: Project
         #  weight: 3
         - URL: blog
           name: Blog
           weight: 4
-        #- hasChildren: yes
-        #  name: Pages
-        #  weight: 5
-        #- URL: faq
-        #  name: FAQ
-        #  parent: Pages
-        #- URL: pricing
-        #  name: Pricing
-        #  parent: Pages
-        #- URL: service
-        #  name: Service
-        #  parent: Pages
+        - hasChildren: yes
+          name: Social
+          weight: 5
+        - URL: https://www.instagram.com/cienciacomdados
+          name: Instagram
+          parent: Social
+        - URL: https://www.facebook.com/Ciência-com-Dados-105816291579374
+          name: Facebook
+          parent: Social
+        - URL: https://twitter.com/cienciacomdados
+          name: Twitter
+          parent: Social
+        - URL: https://www.youtube.com/channel/UCsTFcJXAjEoqZDXaDVfRZDg
+          name: YouTube
+          parent: Social
+        - URL: http://medium.com/@cienciacomdados
+          name: Medium
+          parent: Social
+        - URL: https://www.linkedin.com/company/cienciacomdados
+          name: LinkedIn
+          parent: Social
         - URL: contact
           name: Contato
           weight: 6
