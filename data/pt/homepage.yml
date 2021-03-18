@@ -13,14 +13,11 @@ banner:
 ############################# About #################################
 about:
   enable : true
-  title : "Sobre nós"
-  description : "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics"
-  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id."
+  title : "Sobre"
+  # description : ""
+  content : "O mercado tem intensamente procurado por cientistas de dados. Em consequência, profissionais e estudantes de diversas áreas têm cada vez mais manifestado interesse por esta profissão. A ciência de dados, de forma geral, é composta pela união de três grandes pilares: computação, matemática/estatística e negócio, e toda esta abrangência é o que faz com que seja possível qualquer pessoa, independentemente da área de conhecimento/interesse, se tornar um cientista de dados. No entanto, seja partindo de outra profissão ou iniciando a carreira, quebrar a inércia dos primeiros passos pode ser bastante desafiador: imagine um geógrafo aprendendo uma linguagem de programação ou uma programadora aprendendo modelagem estatística. No início as coisas podem ser difíceis até para formular adequadamente a pergunta sobre a própria dúvida. Nestes momentos, estar próximo de alguém com mais experiência pode fazer a difereça. 
+  <br> <br>O <strong>Ciência com Dados</strong> surgiu para ser um facilitador neste processo, seja através da produção de aulas e tutoriais, do compartilhamento de dicas, da recomendação de cursos e materiais didáticos ou simplesmente respondendo dúvidas.<br><br>
+  <i>Feliz aquele que transfere o que sabe e aprende o que ensina. (Cora Coralina)</i><br><br>"
   image : "images/wrapper-img.png"
 
 
@@ -55,11 +52,11 @@ cta:
   enable : true
   bg_image : "images/call-to-action-bg.jpg"
   title : "Já conhece o Blog Ciência com Dados?"
-  content : "Nosso blog nasceu com o intuito de concentrar dicas e tutoriais em uma página.
+  content : "Este blog nasceu com o intuito de concentrar dicas e tutoriais de asssuntos relacionados à ciência de dados.
   \ <br>"
   button:
     enable : true
-    label : "Acesse o blog Ciência com Dados"
+    label : "Acessar o blog"
     link : "blog"
 
 ############################# Funfacts ###############################
