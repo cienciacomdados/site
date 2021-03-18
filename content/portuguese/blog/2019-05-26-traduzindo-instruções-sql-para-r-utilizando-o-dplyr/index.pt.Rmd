@@ -9,7 +9,8 @@ tags:
   - R
   - SQL
   - dplyr
-  - Data Wrangling
+  - tidyverse
+  - Data wrangling
 bg_image: images/slider-bg.jpg
 image: images/blog/dplyr.jpg
 type: post
