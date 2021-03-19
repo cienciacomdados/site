@@ -1,0 +1,169 @@
+---
+title: Interface "drag and drop"​ para construção de gráficos no R
+author: Júnior
+date: '2019-12-20'
+slug: []
+categories:
+  - Tutoriais
+tags:
+  - R
+  - ggplot2
+  - esquisse
+  - Visualização de dados
+bg_image: images/slider-bg.jpg
+image: images/blog/esquisse.jpg
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval=FALSE)
+library(ggplot2)
+```
+
+A linguagem R possui excelentes recursos para uma boa análise descritiva, principalmente quando o assunto é visualização de dados. No entanto, a necessidade de digitar algumas linhas de código para conseguir plotar determinado gráfico pode complicar o trabalho de quem ainda não tem tanta fluência com a linguagem, pois convenhamos que interromper toda hora a nossa linha de raciocínio para pesquisar “como fazer” atrapalha um pouco.
+
+O ggplot2 é um excelente pacote para visualização de dados, inclusive publiquei [este post](../2019-11-03-visualizando-dados-em-r-com-ggplot2) sobre ele, porém é necessário um pouco de prática até adquirir fluência para redigir suas linhas de código e, consequentemente, plotar os visuais desejados, entretanto, o pacote **esquisse** pode tornar a nossa vida um pouco mais fácil.
+
+De acordo com a documentação do pacote, o esquisse é um *add-in* que nos permite explorar interativamente os dados, visualizando-os com o pacote *ggplot2*. Em outras palavras, ao invés de digitar linhas de código, basicamente o que precisamos é arrastar a soltar as variavés e pronto, o gráfico está construído!
+
+Vamos ver como esta mágica funciona.
+
+# Passo a passo
+
+Para este exemplo de uso vamos precisar somente dos pacotes esquisse e ggplot2:
+
+```{r}
+install.packages("esquisse")
+install.packages("ggplot2")
+```
+
+Em seguida carregamos os pacotes:
+
+```{r}
+library(esquisse)
+library(ggplot2)
+```
+
+A idéia aqui é utilizar o famoso conjunto de dados iris.
+
+```{r, eval=TRUE}
+data(iris)
+```
+
+Aqui as primeiras linhas do dataset:
+
+```{r, eval=TRUE}
+head(iris)
+```
+
+Uma vez que os pacotes e o dataset estão carregados, basta chamar a função `esquisser()` passando o dataset como argumento:
+
+```{r}
+esquisser(iris)
+```
+
+![](images/1576854016481.png){width=100% height=100%}
+
+E agora começa a brincadeira. Escolhi aleatoriamente a variável Sepal.Length e arrastei para o eixo x. Um histograma foi gerado automaticamente:
+
+![](images/1576854047407.png){width=100% height=100%}
+
+Dependendo das variáveis em questão, é possível alterar o tipo do gráfico:
+
+<center>
+![](images/1576854079811.png){width=30% height=30%}
+</center>
+
+Mas vamos continuar com o histograma. No menu **Plot options** encontramos configurações específicas do tipo de gráfico. Neste caso, podemos alterar, por exemplo, o número de bins:
+
+![](images/1576854111159.png){width=100% height=100%}
+
+No menu **Data** é possível aplicar filtros no dataset:
+
+<center>
+![](images/1576854140091.png){width=50% height=50%}
+</center>
+
+Arrastanto, por exemplo, a variável *Petal.Length* para o eixo *y*, temos um gráfico de dispersão:
+
+![](images/1576854166786.png){width=100% height=100%}
+
+Podemos aumentar o tamanho dos pontos e alterar a cor, por exemplo:
+
+![](images/1576854194216.png){width=100% height=100%}
+
+Ainda no menu **Plot options** é possível incluir uma curva de regressão não paramétrica, ativando Smooth line:
+
+<center>
+![](images/1576854222224.png){width=40% height=40%}
+</center>
+
+
+![](images/1576854238943.png){width=100% height=100%}
+
+Podemos criar facetas apenas arrastando uma variável categórica para *facet*:
+
+![](images/1576854265542.png){width=100% height=100%}
+
+Para melhorar a visualização, podemos alterar o tema em Plot options:
+
+<center>
+![](images/1576858295456.png){width=40% height=40%}
+</center>
+
+![](images/1576858313839.png){width=100% height=100%}
+
+Arrastando uma variável numérica para *size*, os tamanhos dos pontos são ajustados proporcionalmente:
+
+![](images/1576858342346.png){width=100% height=100%}
+
+Podemos também criar um gráfico de barras. Para isto, basta arrastar uma variável categórica para o eixo x:
+
+![](images/1576858428419.png){width=100% height=100%}
+Arrastando, por exemplo, a variável *Sepal.Width* para o eixo *y*, temos boxplots:
+
+![](images/1576858441019.png){width=100% height=100%}
+
+E para colorir os gráficos em função de uma variável, basta arrastar a respectiva variável para *fill*:
+
+![](images/1576858468349.png){width=100% height=100%}
+
+Podemos customizar título, subtítulo, legenda e etc…
+
+<center>
+![](images/1576858502005.png){width=30% height=30%}
+</center>
+
+![](images/1576858516288.png){width=100% height=100%}
+
+E a ótima notícia para quem não domina o ggplot2: em *Export & code* é possível copiar o código gerado:
+
+<center>
+![](images/1576858540767.png){width=40% height=40%}
+</center>
+
+
+Perceba que o gráfico gerado através do código exportado é exatamente o mesmo:
+
+```{r, eval=TRUE}
+ggplot(iris) +
+ aes(x = Species, y = Sepal.Width, fill = Species) +
+ geom_boxplot() +
+ scale_fill_hue() +
+ labs(x = "Nome da Espécie", y = "Largura da Sépala", title = "Espécies de Iris", subtitle = "Exemplo utilizando Esquisse", caption = "Gráfico 1", fill = "Espécie") +
+ theme_minimal()
+```
+
+# Considerações finais
+
+A página do esquisse diz que o objetivo deste pacote é permitir a exploração rápida dos dados para extrair informações, mas alerta que não é possível ainda utilizar todo o poder do *ggplot2*. Ou seja, o esquisse esta aí para agilizar a nossa análise, mas diante da necessidade de gráficos com detalhes mais complexos, talvez não seja possível através dessa interface. Portanto faça bom uso do esquisse nas suas análises mas não deixe de praticar o *ggplot2* raíz (por linhas de código).
+
+# Referências e materiais úteis
+
+* [https://dreamrs.github.io/esquisse/](https://dreamrs.github.io/esquisse/)
+* [https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+* [https://rstudio.com/wp-content/uploads/2016/03/ggplot2-cheatsheet-portuguese.pdf](https://rstudio.com/wp-content/uploads/2016/03/ggplot2-cheatsheet-portuguese.pdf)
+* [https://www.datanovia.com/en/lessons/introduction-to-ggplot2/](https://www.datanovia.com/en/lessons/introduction-to-ggplot2/)
+* [http://leg.ufpr.br/~walmes/cursoR/data-vis/03-vis-ggplot2.html](http://leg.ufpr.br/~walmes/cursoR/data-vis/03-vis-ggplot2.html)
+
+

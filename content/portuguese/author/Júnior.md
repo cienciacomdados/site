@@ -2,7 +2,7 @@
 bg_image: images/slider-bg.jpg
 draft: false
 email: juniorssz@gmail.com
-avatar: https://acsjunior.com/author/antonio-c.-da-silva-junior/avatar_hu59476b84095515547ac166fd9a959aa8_91462_270x270_fill_q90_lanczos_center.jpg 
+avatar: https://acsjunior.com/author/antonio-c.-da-silva-junior/avatar.jpg
 social:
 - icon: ion-ios-home-outline
   link: 'https://acsjunior.com/'

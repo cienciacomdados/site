@@ -9,9 +9,9 @@
 				<div class="text-center">
 					<figure>
 						{{ if .Params.Photo }}
-						<img style="border-radius: 50%;" class="img-fluid" src="{{.Params.Photo}}">
+						<img style="border-radius: 50%;" class="imgg-fluid" src="{{.Params.Photo}}">
 						{{else if .Params.Email}}
-						<img style="border-radius: 50%;" class="img-fluid"
+						<img style="border-radius: 50%; max-width: 30%" class="img-fluid"
 							src="{{ .Params.avatar }}">
 						{{ end }}
 						<figcaption>
