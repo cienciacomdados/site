@@ -52,7 +52,7 @@ cta:
   enable : true
   bg_image : "images/call-to-action-bg.jpg"
   title : "Já conhece o Blog Ciência com Dados?"
-  content : "Nele você encontra dicas e tutoriais relacionados à data science.
+  content : "Nele você encontra diversas dicas e tutoriais abordados com clareza e simplicidade.
   \ <br>"
   button:
     enable : true
