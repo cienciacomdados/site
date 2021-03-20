@@ -1,6 +1,6 @@
 ---
 title: Traduzindo instruções SQL para R utilizando o dplyr
-author: Júnior
+author: acsjunior
 date: '2019-05-26'
 slug: []
 categories:
@@ -10,7 +10,7 @@ tags:
   - SQL
   - dplyr
   - tidyverse
-  - Data wrangling
+  - data wrangling
 bg_image: images/slider-bg.jpg
 image: images/blog/dplyr.jpg
 type: post

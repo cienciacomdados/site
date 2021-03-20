@@ -1,7 +1,7 @@
 ---
 title: Utilizando colunas do data frame como argumento em funções personalizadas com
   dplyr
-author: Júnior
+author: acsjunior
 date: '2020-03-29'
 slug: []
 categories:
@@ -10,7 +10,7 @@ tags:
   - R
   - dplyr
   - tidyverse
-  - Data wrangling
+  - data wrangling
 bg_image: images/slider-bg.jpg
 image: images/blog/dplyr.jpg
 type: post

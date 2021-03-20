@@ -1,17 +1,18 @@
 ---
 title: Construindo um dashboard interativo com R, Shiny e Plotly
-author: Júnior
+author: acsjunior
 date: '2019-06-30'
 slug: []
 categories:
   - Tutoriais
 tags:
   - R
-  - Shiny
+  - shiny
+  - shinydashboard
   - ggplot2
   - ggplotly
   - plotly
-  - Visualização de dados
+  - visualização de dados
 bg_image: images/slider-bg.jpg
 image: images/blog/shiny.jpg
 type: post

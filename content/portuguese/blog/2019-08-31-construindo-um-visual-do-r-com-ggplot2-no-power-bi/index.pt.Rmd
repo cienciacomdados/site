@@ -1,6 +1,6 @@
 ---
 title: Construindo um visual do R com Ggplot2 no Power BI
-author: Júnior
+author: acsjunior
 date: '2019-08-31'
 slug: []
 categories:
@@ -9,7 +9,7 @@ tags:
   - Power BI
   - R
   - ggplot2
-  - Visualização de dados
+  - visualização de dados
 bg_image: images/slider-bg.jpg
 image: images/blog/pbi_r.jpg
 type: post

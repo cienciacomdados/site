@@ -1,6 +1,6 @@
 ---
 title: Dica de produtividade com ggplot2 através de funções personalizadas
-author: Júnior
+author: acsjunior
 date: '2020-02-01'
 slug: []
 categories:
@@ -8,7 +8,8 @@ categories:
 tags:
   - R
   - ggplot2
-  - Visualização de dados
+  - tidyverse
+  - visualização de dados
 bg_image: images/slider-bg.jpg
 image: images/blog/ggplot2.jpg
 type: post
