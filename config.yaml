@@ -1,4 +1,4 @@
-baseURL: https://cienciacomdados.netlify.app
+baseURL: '/'
 title: Ciência com Dados
 theme: airspace-hugo
 paginate: '4'
