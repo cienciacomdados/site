@@ -18,5 +18,5 @@ O Pyomo é um pacote baseado em Python para formulação, resolução e análise
 
 Para quem tem pouca ou nenhuma experiência com Python e Pyomo, recomendo [este manual](http://www.opl.ufc.br/files/Manual_Pyomo_2020.pdf) desenvolvido pelo Claudemir Woche e o professor Anselmo Pitombeira, da Universidade Federal do Ceará, e aproveito, inclusive, para agradecê-los por disponibilizarem este ótimo material, talvez o melhor que temos em língua portuguesa. Para demonstrar um pouco sobre o funcionamento do Pyomo, neste artigo será abordada a modelagem e a resolução do problema das p-Medianas com algumas variações.
 
-*[Clique aqui](https://juniorssz.medium.com/resolvendo-o-problema-das-p-medianas-com-python-e-pyomo-351ce0525e00) para acessar a publicação completa realizada no Medium.*
+[Acesse a publicação completa no **Medium**](https://juniorssz.medium.com/resolvendo-o-problema-das-p-medianas-com-python-e-pyomo-351ce0525e00).
 

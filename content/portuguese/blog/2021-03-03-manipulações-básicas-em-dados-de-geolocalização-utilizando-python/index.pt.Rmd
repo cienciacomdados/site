@@ -19,4 +19,4 @@ Ao longo da minha carreira na área de dados eu posso afirmar que tenho menos �
 
 Neste ano iniciei uma pesquisa que envolve dados de geolocalização e aprendi alguns macetes que podem ser úteis para quem não tem muita experiência, sendo assim, o objetivo deste post é demonstrar algumas manipulações básicas em dados de geolocalização, utilizando Python.
 
-*[Clique aqui](https://juniorssz.medium.com/manipula%C3%A7%C3%B5es-b%C3%A1sicas-em-dados-de-geolocaliza%C3%A7%C3%A3o-utilizando-python-93960485779f) para acessar a publicação completa realizada no Medium.*
+[Acesse a publicação completa no **Medium**](https://juniorssz.medium.com/manipula%C3%A7%C3%B5es-b%C3%A1sicas-em-dados-de-geolocaliza%C3%A7%C3%A3o-utilizando-python-93960485779f).
